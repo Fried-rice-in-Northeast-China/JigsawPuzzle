@@ -11,14 +11,24 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="音乐播放器"
+            android:label="拼图游戏"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".GameStart"
+            android:screenOrientation="portrait"
+            android:label="游戏开始" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

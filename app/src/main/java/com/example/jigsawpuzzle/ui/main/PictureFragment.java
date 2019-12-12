@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 /* 加载图片的 Fragment */
 public class PictureFragment extends Fragment {
 
+    //当前图片号
     private int position;
     private Context mContext;
 
@@ -28,11 +29,12 @@ public class PictureFragment extends Fragment {
         mContext = context;
     }
 
+    /* 加载图片 */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container, @NonNull Bundle savedInstanceState)
     {
         AssetManager assetManager = mContext.getAssets();
-        String backName = "back" + (position + 1) + ".jpg";
+        String backName = "back" + position + ".jpg";
         InputStream assetInputStream = null;
         try {
             assetInputStream = assetManager.open(backName);
