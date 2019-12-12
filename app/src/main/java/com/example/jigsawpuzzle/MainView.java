@@ -16,7 +16,6 @@ import android.view.View;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Random;
 
 /* 主视图 */
 public class MainView extends View {
