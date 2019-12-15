@@ -30,6 +30,23 @@ public class MainActivity extends AppCompatActivity {
 
     public static int PICTURECS_COUNT = 22;
 
+
+//    面包车前
+//              胳膊手
+//          头发眼鼻嘴
+//              眼 头发脸眼脸 脖子
+//              镜 头发头发衣服
+//                     衣服 衣服
+//                       衣服 衣服
+//                         衣服 衣服
+//                           衣服 衣服手插兜
+//                            大腿    大腿
+//                          大腿     大腿
+//                        关节      关节
+//                     小腿        小腿
+//                   鞋子       鞋子
+//            地面地面地面地面地面地面地面地面地面
+//               今晚去吃烤肉吧！
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

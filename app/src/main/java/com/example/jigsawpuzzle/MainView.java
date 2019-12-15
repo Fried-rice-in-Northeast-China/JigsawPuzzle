@@ -41,6 +41,14 @@ public class MainView extends View {
             {0,1}//下
     };
 
+
+//          卧槽     ²³³³³³³    6666666    厉害了23333
+//      ²³³³³³³³³³³     2333     6666         ²³³   666
+//          太流弊了！！卧槽     ²³³³³³³    6666666
+//          厉害了23333     ²³³³³³³³³³³     2333     6666
+//                  ²³卧槽     ²³³³³³³    6666666    厉害了23333
+//      ²³³³³³³³³³³     6666     2333
+
     public MainView(Context context) {
         super(context);
         this.context = context;
