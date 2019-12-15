@@ -20,17 +20,17 @@ import java.io.InputStream;
 /* 主视图 */
 public class MainView extends View {
 
-    private String pictureName;
+    private String pictureName;             //图片名
     public static MediaPlayer player = null;
     private Context context;
-    private Bitmap back;
-    private Bitmap[] bitmapTiles;
+    private Bitmap back;                    //位图
+    private Bitmap[] bitmapTiles;           //位图数组
     private Paint paint;
-    private int tileWidth;
-    private int tileHeight;
-    private int[][] dataTiles;
-    private Board tilesBoard;
-    private boolean isSuccess;
+    private int tileWidth;                  //图片块宽度
+    private int tileHeight;                 //图片块高度
+    private int[][] dataTiles;              //图片块序号
+    private Board tilesBoard;               //对图片块的运算
+    private boolean isSuccess;              //是否完成游戏
     private int COL = 3;
     private int ROW = 3;
 
@@ -123,59 +123,60 @@ public class MainView extends View {
 
     /* 手指按下事件检测 */
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-            Point point = posToIndex((int) event.getX(), (int) event.getY());
+        if(!isSuccess) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                Point point = posToIndex((int) event.getX(), (int) event.getY());
 
-            for(int i = 0; i < dir.length; i++) {
-                //遍历四个运动方向
-                int newX = point.getX() + dir[i][0];
-                int newY = point.getY() + dir[i][1];
+                for (int i = 0; i < dir.length; i++) {
+                    //遍历四个运动方向
+                    int newX = point.getX() + dir[i][0];
+                    int newY = point.getY() + dir[i][1];
 
-                if(newX >= 0 && newX < COL && newY >= 0 && newY < ROW) {
-                    //寻找到空白快
-                    if(dataTiles[newY][newX] == COL * ROW - 1) {
-                        //交换图片
-                        int temp = dataTiles[point.getY()][point.getX()];
-                        dataTiles[point.getY()][point.getX()] = dataTiles[newY][newX];
-                        dataTiles[newY][newX] = temp;
-                        //刷新
-                        invalidate();
-                        if(tilesBoard.isSuccess(dataTiles)) {
-                            isSuccess = true;
+                    if (newX >= 0 && newX < COL && newY >= 0 && newY < ROW) {
+                        //寻找到空白快
+                        if (dataTiles[newY][newX] == COL * ROW - 1) {
+                            //交换图片
+                            int temp = dataTiles[point.getY()][point.getX()];
+                            dataTiles[point.getY()][point.getX()] = dataTiles[newY][newX];
+                            dataTiles[newY][newX] = temp;
+                            //刷新
                             invalidate();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                            builder.setTitle("拼图成功")
-                                    .setCancelable(false)
-                                    .setPositiveButton("重新开始", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            letsGo();
-                                        }
-                                    });
-                            if (COL < 5 && ROW < 5) {
-                                builder.setMessage("恭喜你拼图成功")
-                                        .setNegativeButton("升级继续", new DialogInterface.OnClickListener() {
+                            if (tilesBoard.isSuccess(dataTiles)) {
+                                isSuccess = true;
+                                invalidate();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setTitle("拼图成功")
+                                        .setCancelable(false)
+                                        .setPositiveButton("让我康康！", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                musicPlay("levelup");
-                                                COL++;
-                                                ROW++;
-                                                letsGo();
+//                                                letsGo();
                                             }
                                         });
+                                if (COL < 5 && ROW < 5) {
+                                    builder.setMessage("恭喜你拼图成功")
+                                            .setNegativeButton("升级继续", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    musicPlay("levelup");
+                                                    COL++;
+                                                    ROW++;
+                                                    letsGo();
+                                                }
+                                            });
+                                } else {
+                                    builder.setMessage("恭喜通关了")
+                                            .setNegativeButton("回到第一关", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    COL = 3;
+                                                    ROW = 3;
+                                                    letsGo();
+                                                }
+                                            });
+                                }
+                                builder.create().show();
                             }
-                            else {
-                                builder.setMessage("恭喜通关了")
-                                        .setNegativeButton("回到第一关", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                COL = 3;
-                                                ROW = 3;
-                                                letsGo();
-                                            }
-                                        });
-                            }
-                            builder.create().show();
                         }
                     }
                 }
