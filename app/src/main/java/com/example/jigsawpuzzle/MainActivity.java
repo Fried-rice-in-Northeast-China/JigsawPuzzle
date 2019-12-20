@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public static String pictureName;
     public static int level = 3;
 
-    public static int PICTURECS_COUNT = 22;
+    public static int PICTURECS_COUNT = 24;
 
 
 //    面包车前
@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
 //                     衣服 衣服
 //                       衣服 衣服
 //                         衣服 衣服
-//                           衣服 衣服手插兜
+//                          衣服 衣服手插兜
 //                            大腿    大腿
 //                          大腿     大腿
 //                        关节      关节
 //                     小腿        小腿
 //                   鞋子       鞋子
-//            地面地面地面地面地面地面地面地面地面
+//        地面地面地面地面地面地面地面地面地面
 //               今晚去吃烤肉吧！
     @Override
     protected void onCreate(Bundle savedInstanceState) {
