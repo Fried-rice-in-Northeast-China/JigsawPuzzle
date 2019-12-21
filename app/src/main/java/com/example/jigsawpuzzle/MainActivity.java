@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static String pictureName;
     public static int level = 3;
 
-    public static int PICTURECS_COUNT = 49;
+    public static int PICTURECS_COUNT = 87;
 
 
 //    面包车前

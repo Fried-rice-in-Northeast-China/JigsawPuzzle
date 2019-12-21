@@ -1,14 +1,9 @@
 package com.example.jigsawpuzzle;
 
 import android.app.Activity;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import android.view.WindowManager;
-
-import java.io.IOException;
 
 public class GameStart extends Activity {
 
@@ -19,6 +14,7 @@ public class GameStart extends Activity {
         requestWindowFeature(1);
         //隐藏顶部导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(new MainView(this));
     }
 
