@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.example.jigsawpuzzle.ui.main.SectionsPagerAdapter;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static String pictureName;
     public static int level = 3;
 
-    public static int PICTURECS_COUNT = 24;
+    public static int PICTURECS_COUNT = 49;
 
 
 //    面包车前
@@ -52,11 +53,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final TextView title = findViewById(R.id.title);
+
         final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         final TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            /* 选择时触发 */
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                title.setText("图片(" + (tabs.getSelectedTabPosition() + 1) + ")");
+            }
+
+            /* 未选择时触发 */
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            /* 选中之后再次点击即复选时触发 */
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         //获取屏幕像素
         DisplayMetrics metrics = new DisplayMetrics();
