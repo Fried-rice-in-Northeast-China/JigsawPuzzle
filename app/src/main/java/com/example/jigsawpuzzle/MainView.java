@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /* 主视图 */
-public class MainView extends View {
+public abstract class MainView extends View {
 
     private String pictureName;             //图片名
     public static MediaPlayer player = null;
@@ -189,7 +189,7 @@ public class MainView extends View {
                                             .setPositiveButton("让我康康！", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
-//                                                letsGo();
+
                                                 }
                                             });
                                     if (COL < 5 && ROW < 5) {
@@ -222,6 +222,26 @@ public class MainView extends View {
                 }
             }
         }
+        else {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("是否返回主菜单？")
+                        .setCancelable(false)
+                        .setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                quit();
+                            }
+                        })
+                        .create().show();
+            }
+        }
         return true;
     }
 
@@ -245,4 +265,6 @@ public class MainView extends View {
         }
     }
 
+    /* 退出接口 */
+    protected abstract void quit();
 }
